@@ -1,5 +1,4 @@
 {
-  "homepage": "http://tlockhart.github.io/gtriWeatherApi",
   "name": "backend",
   "version": "1.0.0",
   "description": "",
@@ -7,7 +6,6 @@
   "type": "module",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "start:prod": "node server.mjs",
     "start:dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
