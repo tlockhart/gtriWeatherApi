@@ -21,7 +21,7 @@ app.use(express.urlencoded({ limit: "5024mb", extended: true }));
 
 // Add routes, both API and view
 // ************************************************
-app.use('/api/weather', WeatherApiRoutes.getForecast);
+app.use('/api/weather/:stationId', WeatherApiRoutes.getCurrentForecast);
 
 app.use((req, res, next) => {
   next();
