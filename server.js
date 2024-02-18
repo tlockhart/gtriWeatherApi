@@ -13,11 +13,12 @@ const app = express();
 // Apply Cors middleware to allow requests from all origins
 app.use(cors());
 
-const PORT = 3001;
+const PORT = process.env.PORT || 5001;
 
 // import required modules
 app.use(express.json({ limit: "5024mb" }));
 app.use(express.urlencoded({ limit: "5024mb", extended: true }));
+
 
 // Add routes, both API and view
 // ************************************************

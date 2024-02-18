@@ -6,10 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "build": "react-scripts build",
-    "start:prod": "node server.mjs",
+    "start:prod": "node server.js",
     "start:dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
-    "start:server": "cross-env NODE_ENV=development nodemon --ignore 'client/*' node server.mjs",
+    "start:server": "cross-env NODE_ENV=development nodemon --ignore 'client/*' node server.js",
     "start:client": "cd client && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
