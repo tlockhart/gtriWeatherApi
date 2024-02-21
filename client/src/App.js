@@ -1,11 +1,13 @@
 // import logo from './logo.svg';
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
-import Text from "./components/inputs/Search";
+import Search from "./components/inputs/Search";
 import Submit from "./components/buttons/Submit";
 import getDailyForecast from "./utils/getDailyForecast";
 // import convertToFarenheit from "./utils/convertToFareheit";
 import TemperatureChart from "./components/TemperatureChart";
+import Forecast from "./components/Forecast";
+import "./assets/css/style.css"
 
 function App() {
   const [data, setData] = useState(null);
@@ -57,18 +59,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <form className="station-search" onSubmit={handleDayClick}>
-          <Text inputRef={inputRef} />
-          <Submit handleDayClick={handleDayClick} />
+        <form className="station-search-form" onSubmit={handleDayClick}>
+          <Search inputRef={inputRef} handleDayClick={handleDayClick}/>
         </form>
       </header>
-
-      <p>
-        {!data || (data && !Object.keys(data))
-          ? "no records..."
-          : `StationId: ${data[0].stationId} , Current Temperature: ${data[0].temperature}`}
-      </p>
-      {data && Object.keys(data).length > 1 ? <TemperatureChart dataPoints={data}/> : <></>}
+      {data && Object.keys(data).length > 1 ? <Forecast dataPoints={data}/> : <></>}
     </div>
   );
 }

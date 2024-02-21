@@ -1,4 +1,4 @@
-import {WeatherApi as WeatherApiRoutes} from './weatherApi.js';
+import {WeatherApi as WeatherApiRoutes} from '../controller/weatherApi.js';
 
 export {
     WeatherApiRoutes

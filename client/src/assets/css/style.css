@@ -1,0 +1,19 @@
+/* Colors */
+/* Fonts */
+/* Module Export */
+:export {
+  text: rgb(0, 18, 25);
+  textLight: rgb(255, 255, 255);
+  primary: rgb(18, 130, 151);
+  primaryDark: rgb(0, 85, 105);
+  primaryLight: rgb(148, 210, 189);
+  secondary: rgb(238, 155, 0);
+  secondaryDark: rgb(202, 103, 2);
+  secondaryLight: rgb(233, 216, 166);
+  tertiary: rgb(174, 32, 18);
+  tertiaryDark: rgb(155, 34, 38);
+  quaternary: rgb(67, 160, 71);
+  quaternaryDark: rgb(27, 94, 32);
+  quinary: rgb(142, 36, 170);
+  quinaryDark: rgb(74, 20, 140);
+}
