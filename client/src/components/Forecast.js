@@ -17,8 +17,7 @@ const Forecast = ({ dataPoints }) => {
   const temperatures = Object.keys(dataPoints).map(
     (key) => dataPoints[key].temperature
   );
-
-  console.log("Date:", dates, "Temperature:", temperatures);
+  // console.log("Date:", dates, "Temperature:", temperatures);
 
   let data = {
     labels: dates,
@@ -38,11 +37,15 @@ const Forecast = ({ dataPoints }) => {
     ],
   };
 
-  // console.log("Data:", dataPoints)
-  console.log("Colors:", colors.tertiaryDark, rgbToRGBA(colors.tertiary, 0.5));
-
   return (
-    <Card title={`${dataPoints[dates.length].stationId.toUpperCase()} Temperature Trends, Current Temp (${dataPoints[dates.length].temperature} °F)`} id="metrics">
+    <Card
+      title={`${dataPoints[
+        dates.length
+      ].stationId.toUpperCase()} Temperature Trends, Current Temp (${
+        dataPoints[dates.length].temperature
+      } °F)`}
+      id="metrics"
+    >
       <Line
         data={data}
         options={{
@@ -66,12 +69,9 @@ const Forecast = ({ dataPoints }) => {
                 fontColor: rgbToRGBA(colors.text, 1),
                 // Include a dollar sign and commas in tickets
                 callback: function (value, index, values) {
-                  return (
-                    value.toFixed() +
-                    "°F"
-                  );
+                  return value.toFixed() + "°F";
                 },
-                stepSize: 200,  // Adjust the space between ticks on the y-axis
+                stepSize: 200, // Adjust the space between ticks on the y-axis
               },
             },
           },

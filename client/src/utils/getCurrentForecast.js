@@ -1,4 +1,4 @@
-const getDailyForecast = async (stationId) => {
+const getCurrentForecast = async (stationId) => {
     return fetch(`/api/weather/${stationId}`, {
         method: "GET", 
         headers: {
@@ -7,4 +7,4 @@ const getDailyForecast = async (stationId) => {
     })
 }
 
-export default getDailyForecast;
+export default getCurrentForecast;

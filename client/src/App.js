@@ -3,11 +3,11 @@ import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
 import Search from "./components/inputs/Search";
 import Submit from "./components/buttons/Submit";
-import getDailyForecast from "./utils/getDailyForecast";
+import getCurrentForecast from "./utils/getCurrentForecast";
 // import convertToFarenheit from "./utils/convertToFareheit";
 import TemperatureChart from "./components/TemperatureChart";
 import Forecast from "./components/Forecast";
-import "./assets/css/style.css"
+import "./assets/css/style.css";
 
 function App() {
   const [data, setData] = useState(null);
@@ -29,22 +29,20 @@ function App() {
   const handleDayClick = (event) => {
     event.preventDefault();
     if (searchTerm) {
-      console.log("Event:", event.target, "SearchTerm:", searchTerm);
+      // console.log("Event:", event.target, "SearchTerm:", searchTerm);
     }
     const searchElement = inputRef.current;
 
     if (searchElement) {
-      console.log("Value:", searchElement.value);
-
-      //Get Daily Forecast on click
-      getDailyForecast(searchElement.value)
+      //Get CurrentForecast on click
+      getCurrentForecast(searchElement.value)
         .then((res) => {
           const response = res.json();
           return response;
         })
         .then((data) => {
           const dataKeys = typeof Object.keys(data);
-          console.log("Data:", data, "dataKeys:", dataKeys);
+          // console.log("Data:", data, "dataKeys:", dataKeys);
           if (dataKeys.length > 1) {
             setData(data);
           } else {
@@ -60,10 +58,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <form className="station-search-form" onSubmit={handleDayClick}>
-          <Search inputRef={inputRef} handleDayClick={handleDayClick}/>
+          <Search inputRef={inputRef} handleDayClick={handleDayClick} />
         </form>
       </header>
-      {data && Object.keys(data).length > 1 ? <Forecast dataPoints={data}/> : <></>}
+      {data && Object.keys(data).length > 1 ? (
+        <Forecast dataPoints={data} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

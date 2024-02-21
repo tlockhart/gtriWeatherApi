@@ -9,12 +9,13 @@ export const WeatherApi = {
    */
   getCurrentForecast: async (req, res) => {
     const { stationId } = req.params;
-    console.log("StationId:", stationId);
+    // console.log("StationId:", stationId);
     const period = 7;
-
     const apiUrl = `https://api.weather.gov/stations/${stationId}/observations/latest?require_qc=false`;
 
-    // Make Fetch request
+   /******************************************
+    * Get todays Temperature Date
+    ******************************************/
     try {
       const currentForecastResponse = await fetch(apiUrl);
 
@@ -24,7 +25,6 @@ export const WeatherApi = {
         );
       }
       const currentForecastData = await currentForecastResponse.json();
-
       const currentForecastRoot = currentForecastData.properties;
       const timeStamp = currentForecastRoot.timestamp;
       const currentTemp = currentForecastRoot.temperature.value;
@@ -32,7 +32,7 @@ export const WeatherApi = {
       const results = {};
 
       /******************************************
-       * Get todays Temperature Date
+       * Create Current Temperature Record
        ******************************************/
       let currentForecast = WeatherApi.constructRecords(
         timeStamp,
@@ -44,18 +44,19 @@ export const WeatherApi = {
        * Get the Forecast for the 6 previous days
        *********************************************/
       const previousDaysTotal = period - 1;
-      const dailyForecast = await WeatherApi.getDailyForecast(
+      
+      await WeatherApi.getDailyForecast(
         stationId,
         timeStamp,
         previousDaysTotal,
         results,
         currentForecast
       );
-
       /*************************************************/
-      console.log("SevenDayRecord:", results);
 
-      // Handle the response data here
+      /*****************************
+       * Return results as response
+       ****************************/
       res.json(results);
     } catch (error) {
       console.error("Error fetching currentForecastData:", error);
@@ -69,26 +70,25 @@ export const WeatherApi = {
     results,
     currentForecast
   ) => {
-    console.log(stationId, timestamp, previousDaysTotal, results, currentForecast);
     const originalTimestamp = new Date(timestamp);
     const modifiedTimestamp = new Date(originalTimestamp);
     let resultsIndex = 0; // Track the index independently
 
     let count = previousDaysTotal;
-    console.log("Count:", count);
+    // console.log("Count:", count);
     while (count > 0) {
       modifiedTimestamp.setDate(originalTimestamp.getDate() - count);
 
       const timestampNoOffset =
         modifiedTimestamp.toISOString().slice(0, -5) + "+00:00";
-      console.log("modifiedTimestamp:", timestampNoOffset);
-      console.log("StationID;", stationId);
 
       // Construct the URL with the received timeStamp
       const weatherApiUrl = `https://api.weather.gov/stations/${stationId}/observations/${timestampNoOffset}`;
 
       try {
-        // console.log("WeatherAPIURL:", weatherApiUrl);
+        /*****************************************
+         * Fetch the New Record
+         *****************************************/
         const dailyForecastResponse = await fetch(weatherApiUrl);
 
         if (!dailyForecastResponse.ok) {
@@ -111,11 +111,11 @@ export const WeatherApi = {
         resultsIndex += 1; // Increment the index
       } catch (error) {
         // Log the error and continue to the next iteration
-        console.error("Error fetching daily forecast data:", error);
+        console.error(`Error fetching daily forecast for ${timestampNoOffset}:`, error);
       }
       // console.log("Count:", count, "DailyForecast:", results[count]);
       count -= 1;
-    }
+    } // while
     // add todays forecast at the end
     results[resultsIndex + 1] = currentForecast
     return results;
@@ -126,7 +126,6 @@ export const WeatherApi = {
       temperature,
       stationId,
     };
-    console.log("TempObject:", tempObject);
     return tempObject;
   },
 };
