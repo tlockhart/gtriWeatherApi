@@ -6,7 +6,6 @@ import Submit from "./components/buttons/Submit";
 import getCurrentForecast from "./utils/getCurrentForecast";
 // import convertToFarenheit from "./utils/convertToFareheit";
 import TemperatureChart from "./components/TemperatureChart";
-import Forecast from "./components/Forecast";
 import "./assets/css/style.css";
 
 function App() {
@@ -35,7 +34,7 @@ function App() {
 
     if (searchElement) {
       //Get CurrentForecast on click
-      getCurrentForecast(searchElement.value)
+      getCurrentForecast(searchElement.value.toLowerCase().trim())
         .then((res) => {
           const response = res.json();
           return response;
@@ -62,7 +61,7 @@ function App() {
         </form>
       </header>
       {data && Object.keys(data).length > 1 ? (
-        <Forecast dataPoints={data} />
+        <TemperatureChart dataPoints={data} />
       ) : (
         <p>no results...</p>
       )}

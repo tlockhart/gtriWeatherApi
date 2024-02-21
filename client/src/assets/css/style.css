@@ -30,6 +30,7 @@
 .search-input {
   margin-right: 1rem;
   padding: 5px;
+  text-align: center;
 }
 
 .search-group p {
@@ -46,4 +47,14 @@ input::placeholder {
   margin: 0.5rem 0 !important;
   padding: 5px 10px !important;
   background-color: white !important;
+}
+
+canvas {
+  height: 350px;
+}
+
+div#metrics {
+  width: 800px;
+  margin: auto;
+  margin-top: 1rem;
 }

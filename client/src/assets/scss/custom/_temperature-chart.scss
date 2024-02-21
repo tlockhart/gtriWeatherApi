@@ -1,4 +1,10 @@
-.bar-chart {
-    display: flex;
-    justify-content: center;
+  canvas {
+    height: 350px;
   }
+
+  div#metrics {
+    width: 800px;
+    
+    margin: auto;
+    margin-top: 1rem;
+}
