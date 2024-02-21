@@ -64,7 +64,7 @@ function App() {
       {data && Object.keys(data).length > 1 ? (
         <Forecast dataPoints={data} />
       ) : (
-        <></>
+        <p>no results...</p>
       )}
     </div>
   );
