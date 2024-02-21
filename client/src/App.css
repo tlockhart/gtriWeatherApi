@@ -36,37 +36,6 @@
   color: #61dafb;
 }
 
-.station-search-form {
-  display: inline-flex;
-}
-.search-group {
-  display: flex;
-  align-items: center;
-}
-.search-input {
-  margin-right: 1rem;
-  padding: 5px;
-}
-.search-group p {
-  font-size: 14px!important;
-  margin: .5rem;
-}
-
-input::placeholder {
-  text-align: center;
-}
-
-.submit-btn {
-  /* font-size: 14px!important; */
-  margin: .5rem 0!important;
-  padding: 5px 10px !important;
-  background-color: white!important;
-}
-
-.bar-chart {
-  display: flex;
-  justify-content: center;
-}
 
 @keyframes App-logo-spin {
   from {
