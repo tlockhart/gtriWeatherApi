@@ -47,6 +47,7 @@ input::placeholder {
   margin: 0.5rem 0 !important;
   padding: 5px 10px !important;
   background-color: white !important;
+  cursor: pointer;
 }
 
 canvas {
