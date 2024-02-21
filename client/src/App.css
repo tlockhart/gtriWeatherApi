@@ -32,6 +32,10 @@
   color: white;
 }
 
+.App p {
+  margin-top: 1rem;
+}
+
 .App-link {
   color: #61dafb;
 }
