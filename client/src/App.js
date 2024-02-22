@@ -10,7 +10,6 @@ import "./assets/css/style.css";
 
 function App() {
   const [data, setData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
   const inputRef = useRef(null);
 
   /**
@@ -18,7 +17,6 @@ function App() {
    **/
   const clearInput = () => {
     inputRef.current.value = "";
-    setSearchTerm("");
   };
 
   /**
@@ -27,13 +25,11 @@ function App() {
    */
   const handleDayClick = (event) => {
     event.preventDefault();
-    if (searchTerm) {
-      // console.log("Event:", event.target, "SearchTerm:", searchTerm);
-    }
+    
     const searchElement = inputRef.current;
 
     if (searchElement) {
-      //Get CurrentForecast on click
+      // Get CurrentForecast on click
       getCurrentForecast(searchElement.value.toLowerCase().trim())
         .then((res) => {
           const response = res.json();
