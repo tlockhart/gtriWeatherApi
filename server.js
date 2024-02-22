@@ -1,8 +1,8 @@
 // Dependencies
 /*************************/
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -19,10 +19,9 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json({ limit: "5024mb" }));
 app.use(express.urlencoded({ limit: "5024mb", extended: true }));
 
-
 // Add routes, both API and view
 // ************************************************
-app.use('/api/weather/:stationId', WeatherApiRoutes.getCurrentForecast);
+app.use("/api/weather/:stationId", WeatherApiRoutes.getCurrentForecast);
 
 app.use((req, res, next) => {
   next();
@@ -31,10 +30,8 @@ app.use((req, res, next) => {
 // Error-handling middleware
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send('Internal Server Error');
+  res.status(500).send("Internal Server Error");
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

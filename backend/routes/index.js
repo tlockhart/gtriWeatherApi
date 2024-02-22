@@ -1,5 +1,5 @@
-import {WeatherApi as WeatherApiRoutes} from '../controller/weatherApi.js';
+import { WeatherApi } from "../controller/weatherApi.js";
 
-export {
-    WeatherApiRoutes
+export const WeatherApiRoutes = {
+  getCurrentForecast: WeatherApi.getCurrentForecast,
 };
