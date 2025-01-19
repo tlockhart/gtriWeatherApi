@@ -1,5 +1,5 @@
 {
     "scripts": {
-      "start:backend": "npm start --prefix backend"
+      "start:backend": "npm run start --prefix backend"
     }
   }
