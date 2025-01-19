@@ -11,7 +11,7 @@ import { WeatherApiRoutes } from "./routes/index.js";
 const app = express();
 
 // Apply Cors middleware to allow requests from all origins
-app.use(cors({ origin: 'https://weathe-app-frontend.onrender.com' }));
+app.use(cors({ origin: 'https://weather-app-frontend-6ykk.onrender.com' }));
 
 const PORT = process.env.PORT || 3001;
 
