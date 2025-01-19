@@ -4,7 +4,8 @@ const getCurrentForecast = async (stationId) => {
         method: "GET", 
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        referrerPolicy: 'no-referrer', // Adjust the referrer policy
     })
 }
 
