@@ -6,7 +6,7 @@ import cors from "cors";
 
 dotenv.config();
 
-import { WeatherApiRoutes } from "./backend/routes/index.js";
+import { WeatherApiRoutes } from "./routes/index.js";
 
 const app = express();
 
