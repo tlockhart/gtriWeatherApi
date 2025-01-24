@@ -17,7 +17,7 @@ const LoadingSpinner = ({ width, height }) => {
         <FontAwesomeIcon
           icon={faRotateRight}
           // size='5x'
-          color="#3B5998"
+          color="#282c34"
           style={{
             width: `${width}`,
             height: `${height}`,
