@@ -3,7 +3,7 @@ import Submit from "../buttons/Submit";
 /**
  * 
  **/
- const Text = ({ inputRef, handleDayClick }) => {
+ const Search = ({ inputRef, handleDayClick }) => {
 
 
   return (
@@ -21,4 +21,4 @@ import Submit from "../buttons/Submit";
   );
 };
 
-export default Text;
+export default Search;

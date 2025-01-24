@@ -7,10 +7,12 @@ import getCurrentForecast from "./utils/getCurrentForecast";
 // import convertToFarenheit from "./utils/convertToFareheit";
 import TemperatureChart from "./components/TemperatureChart";
 import "./assets/css/style.css";
+import LoadingSpinner from "./components/global/LoadingSpinner";
 
 function App() {
   const [data, setData] = useState(null);
   const inputRef = useRef(null);
+  const [displaySpinner, setDisplaySpinner] = useState(false);
 
   /**
    * Clear the text input and searchTerm
@@ -25,7 +27,7 @@ function App() {
    */
   const handleDayClick = (event) => {
     event.preventDefault();
-    
+    setDisplaySpinner(true);
     const searchElement = inputRef.current;
 
     if (searchElement) {
@@ -38,12 +40,15 @@ function App() {
         .then((data) => {
           const dataKeys = typeof Object.keys(data);
           // console.log("Data:", data, "dataKeys:", dataKeys);
-          if (dataKeys.length > 1) {
             setData(data);
-          } else {
-            setData(data);
-          }
-        });
+        }).catch((error) => {
+          console.error("Error fetching forecast:", error);
+          setData(null);
+        })
+        .finally(() => {
+          setDisplaySpinner(false);
+          clearInput();
+        });;
     }
     // cleanup text input
     clearInput();
@@ -59,7 +64,16 @@ function App() {
       {data && Object.keys(data).length > 1 ? (
         <TemperatureChart dataPoints={data} />
       ) : (
-        <p>no results...</p>
+        <>
+          <p>no results...</p>
+          {displaySpinner ? (
+            <div className="spinner-container">
+              <LoadingSpinner width="150px" height="150px" />
+            </div>
+          ) : (
+            <></>
+          )}
+        </>
       )}
     </div>
   );
